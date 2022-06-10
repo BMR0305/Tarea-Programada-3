@@ -67,10 +67,10 @@ RM = "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Usuario\Desktop\Tarea-Programada-3-main\server
+CMAKE_SOURCE_DIR = C:\Users\Usuario\Documents\GitHub\Tarea-Programada-3\server\Server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Usuario\Desktop\Tarea-Programada-3-main\server\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Usuario\Documents\GitHub\Tarea-Programada-3\server\Server\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,9 +99,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Usuario\Desktop\Tarea-Programada-3-main\server\cmake-build-debug\CMakeFiles C:\Users\Usuario\Desktop\Tarea-Programada-3-main\server\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Usuario\Documents\GitHub\Tarea-Programada-3\server\Server\cmake-build-debug\CMakeFiles C:\Users\Usuario\Documents\GitHub\Tarea-Programada-3\server\Server\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Usuario\Desktop\Tarea-Programada-3-main\server\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Usuario\Documents\GitHub\Tarea-Programada-3\server\Server\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,32 +142,32 @@ server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\server.dir\build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-Server/Server.obj: Server/Server.c.obj
+server/Server.obj: server/Server.c.obj
 
-.PHONY : Server/Server.obj
+.PHONY : server/Server.obj
 
 # target to build an object file
-Server/Server.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\server.dir\build.make CMakeFiles/server.dir/Server/Server.c.obj
-.PHONY : Server/Server.c.obj
+server/Server.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\server.dir\build.make CMakeFiles/server.dir/server/Server.c.obj
+.PHONY : server/Server.c.obj
 
-Server/Server.i: Server/Server.c.i
+server/Server.i: server/Server.c.i
 
-.PHONY : Server/Server.i
+.PHONY : server/Server.i
 
 # target to preprocess a source file
-Server/Server.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\server.dir\build.make CMakeFiles/server.dir/Server/Server.c.i
-.PHONY : Server/Server.c.i
+server/Server.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\server.dir\build.make CMakeFiles/server.dir/server/Server.c.i
+.PHONY : server/Server.c.i
 
-Server/Server.s: Server/Server.c.s
+server/Server.s: server/Server.c.s
 
-.PHONY : Server/Server.s
+.PHONY : server/Server.s
 
 # target to generate assembly for a file
-Server/Server.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\server.dir\build.make CMakeFiles/server.dir/Server/Server.c.s
-.PHONY : Server/Server.c.s
+server/Server.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\server.dir\build.make CMakeFiles/server.dir/server/Server.c.s
+.PHONY : server/Server.c.s
 
 # Help Target
 help:
@@ -178,9 +178,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... server
-	@echo ... Server/Server.obj
-	@echo ... Server/Server.i
-	@echo ... Server/Server.s
+	@echo ... server/Server.obj
+	@echo ... server/Server.i
+	@echo ... server/Server.s
 .PHONY : help
 
 

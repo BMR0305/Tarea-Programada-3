@@ -2,6 +2,8 @@ package org.BreakOut;
 
 import javax.swing.JFrame;
 import java.awt.EventQueue;
+import java.io.IOException;
+
 
 public class Breakout extends JFrame {
 
@@ -10,6 +12,15 @@ public class Breakout extends JFrame {
 	}
 
 	public void initUI() {
+
+		try{
+			client.main("esto es una prueba");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
 		add(new Board());
 		setTitle("Breakout");
 

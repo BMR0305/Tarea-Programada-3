@@ -1,3 +1,5 @@
+package org.BreakOut;
+
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
@@ -5,19 +7,13 @@ import java.util.Scanner;
 
 
 public class client {
-    public static void main()  throws IOException{
+    public static void main(String message)  throws IOException{
         Socket s = new Socket("localhost", 8888);
 
-        String txt;
-        Scanner leer = new Scanner(System.in);
-        System.out.println("Cliente: ");
-        txt = leer.next();
-
         PrintWriter pr = new PrintWriter((s.getOutputStream()));
-        pr.println(txt);
+        pr.println(message);
         pr.flush();
-
-        System.out.println("recibiendo");
+        
         InputStreamReader in = new InputStreamReader((s.getInputStream()));
         BufferedReader bf = new BufferedReader(in);
 

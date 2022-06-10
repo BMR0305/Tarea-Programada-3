@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Usuario/Desktop/Tarea-Programada-3-main/server/Server/Server.c
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/Server.c
 windows.h
 -
 winsock2.h
@@ -20,15 +20,15 @@ stdio.h
 string.h
 -
 logica.h
-C:/Users/Usuario/Desktop/Tarea-Programada-3-main/server/Server/logica.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/logica.h
 lista_enlazada.h
-C:/Users/Usuario/Desktop/Tarea-Programada-3-main/server/Server/lista_enlazada.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
 
-C:/Users/Usuario/Desktop/Tarea-Programada-3-main/server/Server/lista_enlazada.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
 
-C:/Users/Usuario/Desktop/Tarea-Programada-3-main/server/Server/logica.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/logica.h
 lista_enlazada.h
-C:/Users/Usuario/Desktop/Tarea-Programada-3-main/server/Server/lista_enlazada.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
 stdio.h
 -
 stdlib.h

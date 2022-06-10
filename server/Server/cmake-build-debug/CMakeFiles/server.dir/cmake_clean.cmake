@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/server.dir/Server/Server.c.obj"
+  "CMakeFiles/server.dir/server/Server.c.obj"
   "libserver.dll.a"
   "server.exe"
   "server.exe.manifest"
