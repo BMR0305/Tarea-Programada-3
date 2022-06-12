@@ -1,16 +1,22 @@
-org/BreakOut/Brick.java
- org.BreakOut.Brick
+org/BreakOut/package-info.java
+ org.BreakOut.package-info
+org/BreakOut/Paddle.java
+ org.BreakOut.Paddle
+org/BreakOut/Controller.java
+ org.BreakOut.Controller
 org/BreakOut/Sprite.java
  org.BreakOut.Sprite
 org/BreakOut/Ball.java
  org.BreakOut.Ball
-org/BreakOut/Commons.java
- org.BreakOut.Commons
-org/BreakOut/Paddle.java
- org.BreakOut.Paddle
 org/BreakOut/Board.java
  org.BreakOut.Board
  org.BreakOut.Board$GameCycle
  org.BreakOut.Board$TAdapter
+org/BreakOut/Commons.java
+ org.BreakOut.Commons
+org/BreakOut/Brick.java
+ org.BreakOut.Brick
+org/BreakOut/client.java
+ org.BreakOut.client
 org/BreakOut/Breakout.java
  org.BreakOut.Breakout
