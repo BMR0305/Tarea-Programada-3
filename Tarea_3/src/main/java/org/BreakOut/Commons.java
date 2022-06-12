@@ -1,15 +1,16 @@
 package org.BreakOut;
+import java.lang.Object;
 
 public interface Commons {
 
-	int WIDTH = 300;
-	int HEIGHT = 400;
-	int BOTTOM_EDGE = 390;
-	int N_OF_BRICKS = 48;
-	int INIT_PADDLE_X = 200;
-	int INIT_PADDLE_Y = 360;
-	int INIT_BALL_X = 230;
-	int INIT_BALL_Y = 355;
-	int PERIOD = 10;
+	java.lang.Integer WIDTH = 300;
+	java.lang.Integer HEIGHT = 400;
+	java.lang.Integer BOTTOM_EDGE = 390;
+	java.lang.Integer N_OF_BRICKS = 48;
+	java.lang.Integer INIT_PADDLE_X = 200;
+	java.lang.Integer INIT_PADDLE_Y = 360;
+	java.lang.Integer INIT_BALL_X = 150;
+	java.lang.Integer INIT_BALL_Y = 350;
+	java.lang.Integer PERIOD = 10;
 	
 }

@@ -2,25 +2,32 @@ package org.BreakOut;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
+import java.lang.Object;
+
 public class Paddle extends Sprite {
 	
-	private int dx;
+	private java.lang.Integer dx = 0;
+	private java.lang.String size = "";
 	
-	public Paddle() {
-		initPaddle();
+	public Paddle(java.lang.String size_) {
+		initPaddle(size_);
 	}
 	
-	private void initPaddle() {
+	private void initPaddle(java.lang.String size_) {
+		size = size_;
 		loadImage();
 		getImageDimensions();
-		 
 		resetState();
 		
+	}
+	private void reloadPaddle(){
+		loadImage();
+		getImageDimensions();
 	}
 	
 	private void loadImage() {
 		
-		var ii = new ImageIcon("src/resources/paddle.png");
+		var ii = new ImageIcon("src/resources/paddle/paddle_"+size+".png");
 		image = ii.getImage();
 		
 	}
@@ -42,24 +49,43 @@ public class Paddle extends Sprite {
 	}
 	
 	void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
+		java.lang.Integer key = e.getKeyCode();
 		
 		if (key == KeyEvent.VK_LEFT) {
 			
-			dx = -1;
+			dx = -2;
 		}
 		
 		if (key == KeyEvent.VK_RIGHT) {
 			
-			dx = 1;
+			dx = 2;
 		}
 		
 		
 	}
 	
-	
+	void changeSize(java.lang.Integer change){
+		if (change == 1 && size == "N"){
+			size = "L";
+			reloadPaddle();
+		}
+		else if (change == 1 && size == "S"){
+			size = "N";
+			reloadPaddle();
+		}
+		else if (change == -1 && size == "N"){
+			size = "S";
+			reloadPaddle();
+		}
+		else if (change == -1 && size == "L"){
+			size = "N";
+			reloadPaddle();
+		}
+	}
+
+
 	void keyReleased(KeyEvent e) {
-		int key = e.getKeyCode();
+		java.lang.Integer key = e.getKeyCode();
 		
 		if (key == KeyEvent.VK_LEFT) {
 			
@@ -81,18 +107,9 @@ public class Paddle extends Sprite {
 		x = Commons.INIT_PADDLE_X;
 		y = Commons.INIT_PADDLE_Y;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public java.lang.String getSize(){
+		return size;
+	}
 
 }

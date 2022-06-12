@@ -1,22 +1,22 @@
 package org.BreakOut;
 
 import javax.swing.ImageIcon;
+import java.lang.Object;
 
 public class Ball extends Sprite {
+    private java.lang.Double xdir;
+    private java.lang.Double ydir;
+    private java.lang.Double velocity;
+    public Ball(java.lang.Double velocity) {
 
-    private int xdir;
-    private int ydir;
-
-    public Ball() {
-
-        initBall();
+        initBall(velocity);
     }
 
-    private void initBall() {
+    void initBall(java.lang.Double velocity) {
         
-        xdir = 1;
-        ydir = -1;
-
+        xdir = 1*velocity;
+        ydir = -1*velocity;
+        this.velocity = velocity;
         loadImage();
         getImageDimensions();
         resetState();
@@ -30,43 +30,51 @@ public class Ball extends Sprite {
 
     void move() {
 
-        x += xdir;
-        y += ydir;
+        x += xdir.intValue();
+        y += ydir.intValue();
 
-        if (x == 0) {
+        if (x <= 0) {
 
-            setXDir(1);
+            setXDir(1*velocity);
         }
 
-        if (x == Commons.WIDTH - imageWidth) {
+        if (x >= Commons.WIDTH - imageWidth) {
 
-            setXDir(-1);
+            setXDir(-1*velocity);
         }
 
-        if (y == 0) {
+        if (y <= 0) {
 
-            setYDir(1);
+            setYDir(1*velocity);
         }
     }
 
-    private void resetState() {
+    void resetState() {
 
         x = Commons.INIT_BALL_X;
         y = Commons.INIT_BALL_Y;
     }
 
-    void setXDir(int x) {
+    void setXDir(java.lang.Double x) {
 
         xdir = x;
     }
 
-    void setYDir(int y) {
+    void setYDir(java.lang.Double y) {
 
         ydir = y;
     }
 
-    int getYDir() {
+    java.lang.Double getYDir() {
 
         return ydir;
+    }
+
+    void setVelocity(java.lang.Double velocity) {
+
+        this.velocity = velocity;
+    }
+    java.lang.Double getVelocity() {
+        return velocity;
     }
 }
