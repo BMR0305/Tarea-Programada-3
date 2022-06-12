@@ -14,7 +14,7 @@ public class Paddle extends Sprite {
 	}
 	
 	private void initPaddle(java.lang.String size_) {
-		size = size_;
+		this.size = size_;
 		loadImage();
 		getImageDimensions();
 		resetState();
@@ -103,7 +103,6 @@ public class Paddle extends Sprite {
 	
 	
 	private void resetState() {
-		
 		x = Commons.INIT_PADDLE_X;
 		y = Commons.INIT_PADDLE_Y;
 	}

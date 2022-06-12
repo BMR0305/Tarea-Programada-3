@@ -1,7 +1,9 @@
 package org.BreakOut;
 
 import javax.swing.ImageIcon;
+import java.io.*;
 import java.lang.Object;
+import java.util.Scanner;
 
 public class Brick extends Sprite {
 
@@ -60,5 +62,6 @@ public class Brick extends Sprite {
     java.lang.Integer getPoints(){
         return this.points;
     }
+
 
 }

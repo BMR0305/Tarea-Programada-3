@@ -15,7 +15,7 @@
 #pragma comment (lib, "Ws2_32.lib")
 // #pragma comment (lib, "Mswsock.lib")
 
-#define DEFAULT_BUFLEN 512
+#define DEFAULT_BUFLEN 1000
 #define DEFAULT_PORT "8888"
 
 int __cdecl main(void) {
@@ -141,9 +141,10 @@ int __cdecl main(void) {
                     printf("%s\n", game);
                     // Echo the buffer back to the sender
                     iSendResult = send(ClientSocket, game, 260, 0);
-                } else{
+                }
+                else{
                     write(recvbuf);
-                    iSendResult = send(ClientSocket, recvbuf, recvbuflen, 0);
+                    //iSendResult = send(ClientSocket, recvbuf, 1000, 0);
                 }
 
 

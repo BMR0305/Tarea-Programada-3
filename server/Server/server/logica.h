@@ -15,7 +15,7 @@ struct snodo* crear_tablero(){
     cabeza = NULL; //Se inicializa la cabeza como NULL ya que no hay ningun nodo cargado en la lista
     //char add = '%';
     //insertarEnLista (&cabeza, add);
-    for (int i = 8; i > 0; --i) {
+    for (int i = 1; i < 9; ++i) {
         for (int j = 0; j < 6; ++j) {
             insertarEnLista(&cabeza, i);
             int r = rand() % 7;
@@ -31,7 +31,7 @@ struct snodo* crear_tablero(){
 int write(const char *str) {
     //const char *str = "Temporary string to be written to file!";
 
-    const char* filename = "out.txt";
+    const char* filename = "gameInfo.txt";
 
     FILE* output_file = fopen(filename, "w+");
     if (!output_file) {

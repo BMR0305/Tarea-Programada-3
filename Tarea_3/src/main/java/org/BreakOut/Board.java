@@ -2,6 +2,13 @@ package org.BreakOut;
 
 
 import javafx.scene.media.*;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,6 +27,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.lang.Object;
 import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Board extends JPanel {
@@ -37,18 +45,24 @@ public class Board extends JPanel {
     private java.lang.Boolean player = false;
 
 
-    public Board(java.lang.String board) {
-        initBoard(board);
+    public Board() {
+        initBoard();
     }
 
-    private void initBoard(java.lang.String board) {
+    private void initBoard() {
 
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.BLACK);
         listOfBalls = new ArrayList<Ball>();
         setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
-        gameInit(board);
+        try{
+            java.lang.String board = client.client("1");
+            gameInit(board);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void gameInit(java.lang.String board) {
@@ -68,11 +82,9 @@ public class Board extends JPanel {
             for (java.lang.Integer j = 0; j < 6; j++) {
                 java.lang.Integer index = 6*i+j;
                 java.lang.String specsString = listOfBricks[index];
-                java.lang.String [] listOfSpecs = specsString.split("-", 3);
+                java.lang.String [] listOfSpecs = specsString.split("_", 3);
                 java.lang.Integer power = Integer.parseInt(listOfSpecs[0]);
                 java.lang.Integer points =  Integer.parseInt(listOfSpecs[1]);
-                System.out.println(power);
-                System.out.println(points);
                 bricks[k] = new Brick(j * 40 + 30, i * 10 + 50, power, points);
                 k++;
             }
@@ -96,7 +108,11 @@ public class Board extends JPanel {
 
         if (inGame) {
             if (notfinished) {
-                drawObjects(g2d);
+                try {
+                    drawObjects(g2d);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 gameFinished(g2d);
             }
@@ -107,7 +123,7 @@ public class Board extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void drawObjects(Graphics2D g2d) {
+    private void drawObjects(Graphics2D g2d) throws IOException {
         if (player){
             drawPlayer(g2d);
         }
@@ -149,7 +165,9 @@ public class Board extends JPanel {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            paddle.keyReleased(e);
+            if (inGame && player) {
+                paddle.keyReleased(e);
+            }
         }
 
         @Override
@@ -227,7 +245,7 @@ public class Board extends JPanel {
             if (j == Commons.N_OF_BRICKS) {
                 level+=1;
 
-                initBoard("6-80%1-80%6-80%5-80%3-80%2-80%5-70%0-70%5-70%6-70%0-70%5-70%6-60%6-60%0-60%1-60%6-60%0-60%4-50%4-50%2-50%2-50%3-50%6-50%5-40%6-40%5-40%5-40%6-40%1-40%1-30%5-30%1-30%2-30%0-30%4-30%5-20%0-20%4-20%3-20%3-20%4-20%4-10%2-10%5-10%2-10%2-10%4-10%ajugbuhsabgjhdsabu*´{ñ}%%%");
+                initBoard();
             }
         }
         for (Ball ball : listOfBalls) {
@@ -348,6 +366,7 @@ public class Board extends JPanel {
         g2d.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(),
                 paddle.getImageWidth(), paddle.getImageHeight(), this);
         gameInfo= gameInfo + "%"+paddle.getX().toString()+"&"+paddle.getY().toString()+"&"+paddle.getSize()+"%";
+        System.out.println(gameInfo);
         for (java.lang.Integer  i = 0; i < Commons.N_OF_BRICKS; i++) {
             if (!bricks[i].isDestroyed()) {
                 g2d.drawImage(bricks[i].getImage(), bricks[i].getX(),
@@ -365,30 +384,23 @@ public class Board extends JPanel {
         g2d.drawString("Score: " + score.toString(),10, 20);
         java.lang.Integer level_ = level.intValue();
         g2d.drawString("Level: " + level_.toString(),125, 20);
-        gameInfo = gameInfo + "%"+lifes.toString()+"&"+score.toString()+"&"+level_.toString()+"%";
-
-        /*java.lang.String [] gameInfoArray = gameInfo.split("%");
-        java.lang.String balls_ = gameInfoArray[0];
-        java.lang.String paddle_ = gameInfoArray[1];
-        java.lang.String bricks_ = gameInfoArray[2];
-        java.lang.String misc_ = gameInfoArray[3];
-        java.lang.String [] ballsInfo =  balls_.split("#");
-        for(java.lang.String ballInfo : ballsInfo){
-            java.lang.String [] ballCoords =  ballInfo.split("&");
-            System.out.println("Ball X: " +ballCoords[0]);
-            System.out.println("Ball Y: " +ballCoords[1]);
+        gameInfo = gameInfo+"%" +lifes.toString()+"&"+score.toString()+"&"+level_.toString()+"%";
+        try {
+            RandomAccessFile stream = new RandomAccessFile("C:\\Users\\Lenovo\\Documents\\GitHub\\Tarea-Programada-3\\server\\Server\\cmake-build-debug\\gameInfo.txt", "rw");
+            FileChannel channel = stream.getChannel();
+            byte[] strBytes = gameInfo.getBytes();
+            ByteBuffer buffer = ByteBuffer.allocate(strBytes.length);
+            buffer.put(strBytes);
+            buffer.flip();
+            channel.write(buffer);
+            stream.close();
+            channel.close();
+        } catch (IOException er) {
+            er.printStackTrace();
         }
-        System.out.println("Paddle: " + paddle_);
-        java.lang.String [] bricksInfo =  bricks_.split("#");
-        for(java.lang.String brickInfo : bricksInfo){
-            java.lang.String [] brickCoords =  brickInfo.split("&");
-            System.out.println("Brick X: " +brickCoords[0]);
-            System.out.println("Brick Y: " +brickCoords[1]);
-        }
-        System.out.println("Etc: " + gameInfoArray[3]);*/
     }
-    private void drawSpectator(Graphics2D g2d) {
-        java.lang.String gameInfo = "";
+    private void drawSpectator(Graphics2D g2d) throws IOException {
+        java.lang.String gameInfo = getGameInfo("2");
         java.lang.String [] gameInfoArray = gameInfo.split("%");
         java.lang.String balls_ = gameInfoArray[0];
         java.lang.String paddle_ = gameInfoArray[1];
@@ -398,8 +410,6 @@ public class Board extends JPanel {
         java.lang.String [] ballsInfo =  balls_.split("#");
         for(java.lang.String ballInfo : ballsInfo){
             java.lang.String [] ballCoords =  ballInfo.split("&");
-            System.out.println("Ball X: " +ballCoords[0]);
-            System.out.println("Ball Y: " +ballCoords[1]);
             Ball ball_ = new Ball(0.0);
             g2d.drawImage(ball_.getImage(),Integer.valueOf(ballCoords[0]), Integer.valueOf(ballCoords[1]),
                     ball_.getImageWidth(), ball_.getImageHeight(), this);
@@ -412,8 +422,6 @@ public class Board extends JPanel {
         java.lang.String [] bricksInfo =  bricks_.split("#");
         for(java.lang.String brickInfo : bricksInfo){
             java.lang.String [] brickCoords =  brickInfo.split("&");
-            System.out.println("Brick X: " +brickCoords[0]);
-            System.out.println("Brick Y: " +brickCoords[1]);
             Brick brick_ = new Brick(Integer.valueOf(brickCoords[0]),Integer.valueOf(brickCoords[1]),Integer.valueOf(brickCoords[2]),Integer.valueOf(brickCoords[3]));
             g2d.drawImage(brick_.getImage(), brick_.getX(),
                     brick_.getY(), brick_.getImageWidth(),
@@ -429,7 +437,16 @@ public class Board extends JPanel {
         g2d.drawString("Lifes: " + misc_Info[0],240, 20);
         g2d.drawString("Score: " + misc_Info[1],10, 20);
         g2d.drawString("Level: " + misc_Info[2],125, 20);
+
     }
 
+    public java.lang.String getGameInfo(java.lang.String message) throws IOException {
+        File file = new File("C:\\Users\\Lenovo\\Documents\\GitHub\\Tarea-Programada-3\\server\\Server\\cmake-build-debug\\gameInfo.txt");
+        Scanner sc = new Scanner(file);
+        String st;
+        st = sc.nextLine();
+        return st;
+    }
+    
 }
 
