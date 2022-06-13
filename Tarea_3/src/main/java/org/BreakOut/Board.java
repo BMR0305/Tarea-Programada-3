@@ -144,7 +144,7 @@ public class Board extends JPanel {
                 (Commons.WIDTH - fontMetrics.stringWidth(message)) / 2,
                 Commons.WIDTH / 2);
         g2d.drawString("Final score: "+score.toString(),
-                80, 200);
+                60, 200);
     }
 
     private void startingScreen(Graphics2D g2d) {
@@ -154,11 +154,11 @@ public class Board extends JPanel {
 
         g2d.setColor(Color.WHITE);
         g2d.setFont(font);
-        g2d.drawString("Press P to be a player",
-                (Commons.WIDTH - fontMetrics.stringWidth("Press P to be a player")) / 2,
+        g2d.drawString("Press \"P\" to be a player",
+                (Commons.WIDTH - fontMetrics.stringWidth("Press \"P\" to be a player")) / 2,
                 Commons.WIDTH / 2);
-        g2d.drawString("Press S to be a spectator",
-                20, 200);
+        g2d.drawString("Press \"S\" to be a spectator",
+                10, 200);
     }
 
     private class TAdapter extends KeyAdapter {
@@ -417,7 +417,7 @@ public class Board extends JPanel {
         java.lang.String [] paddleCoords =  paddle_.split("&");
         Paddle paddleE = new Paddle(paddleCoords[2]);
         g2d.drawImage(paddleE.getImage(), Integer.valueOf(paddleCoords[0]), Integer.valueOf(paddleCoords[1]),
-                paddle.getImageWidth(), paddle.getImageHeight(), this);
+                paddleE.getImageWidth(), paddleE.getImageHeight(), this);
 
         java.lang.String [] bricksInfo =  bricks_.split("#");
         for(java.lang.String brickInfo : bricksInfo){
@@ -437,7 +437,7 @@ public class Board extends JPanel {
         g2d.drawString("Lifes: " + misc_Info[0],240, 20);
         g2d.drawString("Score: " + misc_Info[1],10, 20);
         g2d.drawString("Level: " + misc_Info[2],125, 20);
-
+        g2d.drawString("Spectator",10, 390);
     }
 
     public java.lang.String getGameInfo(java.lang.String message) throws IOException {
@@ -447,6 +447,6 @@ public class Board extends JPanel {
         st = sc.nextLine();
         return st;
     }
-    
+
 }
 

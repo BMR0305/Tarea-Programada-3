@@ -26,7 +26,6 @@ public class Paddle extends Sprite {
 	}
 	
 	private void loadImage() {
-		
 		var ii = new ImageIcon("src/resources/paddle/paddle_"+size+".png");
 		image = ii.getImage();
 		
@@ -42,10 +41,7 @@ public class Paddle extends Sprite {
 		
 	if (x >= Commons.WIDTH - imageWidth) {
 		x = Commons.WIDTH - imageWidth;
-		
 	}
-		
-		
 	}
 	
 	void keyPressed(KeyEvent e) {
