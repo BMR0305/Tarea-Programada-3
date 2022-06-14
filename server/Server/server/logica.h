@@ -9,12 +9,15 @@
 #include<stdlib.h>
 #include <string.h>
 
-
+/**
+ * Funcion para crear el tablero de cada nivel, asiganrá el puntaje dependiendo de
+ * la fila donde se encuentre el ladrillo y se asignará un poder aleatorio.
+ * @return puntero al inicio de la lista
+ */
 struct snodo* crear_tablero(){
-    tpuntero cabeza; //Indica la cabeza de la lista enlazada, si la perdemos no podremos acceder a la lista
-    cabeza = NULL; //Se inicializa la cabeza como NULL ya que no hay ningun nodo cargado en la lista
-    //char add = '%';
-    //insertarEnLista (&cabeza, add);
+    tpuntero cabeza;
+    cabeza = NULL;
+
     for (int i = 1; i < 9; ++i) {
         for (int j = 0; j < 6; ++j) {
             insertarEnLista(&cabeza, i);
@@ -23,26 +26,28 @@ struct snodo* crear_tablero(){
         }
     }
     printf("\n");
-    //imprimirLista (cabeza);
     return cabeza;
 }
 
 
+/**
+ * Funcion para almacenar la infromacion del juego para luego
+ * pasarla a el espectador
+ * @param str informacion del juego
+ * @return si existe algun error
+ */
 int write(const char *str) {
-    //const char *str = "Temporary string to be written to file!";
 
     const char* filename = "gameInfo.txt";
 
     FILE* output_file = fopen(filename, "w+");
     if (!output_file) {
         perror("fopen");
-        //exit(EXIT_FAILURE);
-    }
 
+    }
     fwrite(str, 1, strlen(str), output_file);
 
     fclose(output_file);
-    //exit(EXIT_SUCCESS);
 
 }
 

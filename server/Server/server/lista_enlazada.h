@@ -5,12 +5,20 @@
 #ifndef SERVER_LISTA_ENLAZADA_H
 #define SERVER_LISTA_ENLAZADA_H
 
-typedef struct snodo{ //snodo es el nombre de la estructura
+/**
+ * Struct nodo, estructura que seguirán los nodos de la lista enlazada
+ * valor: numero que almacenará el nodo
+ * sig: puntero hacia el nodo siguiente para recorrer la lista
+ */
+typedef struct snodo{
     int valor;
-    struct snodo *sig; //El puntero siguiente para recorrer la lista enlazada
-}tnodo; //tnodo es el tipo de dato para declarar la estructura
+    struct snodo *sig;
+}tnodo;
 
-typedef tnodo *tpuntero; //Puntero al tipo de dato tnodo para no utilizar punteros de punteros
+/**
+ * Puntero al tipo de dato tnodo para no utilizar punteros de punteros
+ */
+typedef tnodo *tpuntero;
 
 
 void insertarEnLista (tpuntero *cabeza, int e);
@@ -18,38 +26,49 @@ void imprimirLista (tpuntero cabeza);
 void borrarLista (tpuntero *cabeza);
 
 
+/**
+ * Metodo para incertar un nuevo nodo en la lista
+ * @param cabeza puntero al inicio de la lista
+ * @param e valor a almacenar en el nodo
+ */
 void insertarEnLista (tpuntero *cabeza, int e){
-    tpuntero nuevo; //Creamos un nuevo nodo
-    nuevo = malloc(sizeof(tnodo)); //Utilizamos malloc para reservar memoria para ese nodo
-    nuevo->valor = e; //Le asignamos el valor ingresado por pantalla a ese nodo
-    tpuntero actual; //Puntero auxiliar para eliminar correctamente la lista
+    tpuntero nuevo;
+    nuevo = malloc(sizeof(tnodo));
+    nuevo->valor = e;
 
-    nuevo->sig = *cabeza; //Le asignamos al siguiente el valor de cabeza
-    *cabeza = nuevo; //Cabeza pasa a ser el ultimo nodo agregado
+    nuevo->sig = *cabeza;
+    *cabeza = nuevo;
 }
 
+/**
+ * Funcion para imprimir la lista
+ * @param cabeza puntero al inicio de la lista
+ */
 void imprimirLista(tpuntero cabeza){
     char value[2];
 
-    while(cabeza != NULL){ //Mientras cabeza no sea NULL
+    while(cabeza != NULL){
 
         sprintf(value, "%d", cabeza->valor);
 
-        printf("%s ", value); //Imprimimos el valor del nodo
-        cabeza = cabeza->sig; //Pasamos al siguiente nodo
+        printf("%s ", value);
+        cabeza = cabeza->sig;
     }
 }
 
+/**
+ * Funcion para borrar la lista y liberar el los espacios asignados
+ * @param cabeza puntero al iniico de la lista
+ */
 void borrarLista(tpuntero *cabeza){
-    tpuntero actual; //Puntero auxiliar para eliminar correctamente la lista
+    tpuntero actual;
 
-    while(*cabeza != NULL){ //Mientras cabeza no sea NULL
-        actual = *cabeza; //Actual toma el valor de cabeza
-        *cabeza = (*cabeza)->sig; //Cabeza avanza 1 posicion en la lista
-        free(actual); //Se libera la memoria de la posicion de Actual (el primer nodo), y cabeza queda apuntando al que ahora es el primero
+    while(*cabeza != NULL){
+        actual = *cabeza;
+        *cabeza = (*cabeza)->sig;
+        free(actual);
     }
 }
-
 
 
 #endif //SERVER_LISTA_ENLAZADA_H

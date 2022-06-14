@@ -77,6 +77,9 @@
 		<Unit filename="C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/Server.c">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/constantes.h">
+			<Option target="server"/>
+		</Unit>
 		<Unit filename="C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h">
 			<Option target="server"/>
 		</Unit>
