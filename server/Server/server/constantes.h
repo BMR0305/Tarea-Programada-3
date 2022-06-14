@@ -1,0 +1,9 @@
+//
+// Created by Lenovo on 14/6/2022.
+//
+
+#ifndef SERVER_CONSTANTES_H
+#define SERVER_CONSTANTES_H
+#define DEFAULT_BUFLEN 1000
+#define DEFAULT_PORT "8888"
+#endif //SERVER_CONSTANTES_H

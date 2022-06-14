@@ -1,11 +1,11 @@
-org/BreakOut/client.java
- org.BreakOut.client
 org/BreakOut/Paddle.java
  org.BreakOut.Paddle
 org/BreakOut/Sprite.java
  org.BreakOut.Sprite
 org/BreakOut/Ball.java
  org.BreakOut.Ball
+org/BreakOut/Client.java
+ org.BreakOut.Client
 org/BreakOut/Commons.java
  org.BreakOut.Commons
 org/BreakOut/Brick.java

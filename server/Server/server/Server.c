@@ -10,13 +10,13 @@
 #include <string.h>
 #include "logica.h"
 #include "lista_enlazada.h"
+#include "constantes.h"
 
 // Need to link with Ws2_32.lib
 #pragma comment (lib, "Ws2_32.lib")
 // #pragma comment (lib, "Mswsock.lib")
 
-#define DEFAULT_BUFLEN 1000
-#define DEFAULT_PORT "8888"
+
 
 int __cdecl main(void) {
 

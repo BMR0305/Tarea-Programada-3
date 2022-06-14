@@ -1,10 +1,7 @@
 package org.BreakOut;
 
 
-import javafx.scene.media.*;
-
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -25,15 +22,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.lang.Object;
-import java.util.Arrays;
 import java.util.Scanner;
 
 
+/**
+ * Clase Board
+ */
 public class Board extends JPanel {
 
+    /**
+     * timer: temporizador para manejar los ticks por segundo en la ventana del juego
+     * listOfBalls: lista que contiene los objetos Ball en juego
+     * paddle: Objeto Paddle que representa la raqueta que el jugador utilzia en ventana
+     * bricks: array que contiene los objetos Brick en juego
+     * notfinished: Variable booleana que indica si el juego ha finalizado
+     * inGame: Variable booleana que indica si el juego ha comenzado
+     * lifes: numero de vidas del jugador
+     * score: puntuacion del jugador
+     * level: nivel en el cual se encuentra el jugador
+     * player: variable booleana que indica si se es un jugador o un espectador
+     */
     private Timer timer;
-    private java.lang.String message = "Game Over";
     private ArrayList<Ball> listOfBalls = new ArrayList<Ball>();
     private Paddle paddle;
     private Brick[] bricks;
@@ -44,11 +53,15 @@ public class Board extends JPanel {
     private java.lang.Double level = 1.0;
     private java.lang.Boolean player = false;
 
-
+    /**
+     * Constructor de la clase Borad
+     */
     public Board() {
         initBoard();
     }
-
+    /**
+     * Incializador de las instancias de Board
+     */
     private void initBoard() {
 
         addKeyListener(new TAdapter());
@@ -57,7 +70,7 @@ public class Board extends JPanel {
         listOfBalls = new ArrayList<Ball>();
         setPreferredSize(new Dimension(Commons.WIDTH, Commons.HEIGHT));
         try{
-            java.lang.String board = client.client("1");
+            java.lang.String board = Client.getClient().client("1");
             gameInit(board);
 
         } catch (IOException e) {
@@ -65,6 +78,10 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Incializador del juego
+     * @param board mapa de juego recibido del server, a partir de este se crean los ladrillos
+     */
     private void gameInit(java.lang.String board) {
 
         bricks = new Brick[Commons.N_OF_BRICKS];
@@ -94,6 +111,10 @@ public class Board extends JPanel {
         timer.start();
     }
 
+    /**
+     * Funcion que decide que se desea dibujar en la pantalla
+     * @param g canvas grafico de la ventana
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -123,6 +144,11 @@ public class Board extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Funcion que dibuja los objetos en pantalla, estos se dibujan de diferentes fuentes si se es o no es jugador
+     * @param g2d canvas grafico 2D de la ventana
+     * @throws IOException debido a la lectura de la informacion por parte del expectador
+     */
     private void drawObjects(Graphics2D g2d) throws IOException {
         if (player){
             drawPlayer(g2d);
@@ -133,6 +159,10 @@ public class Board extends JPanel {
 
     }
 
+    /**
+     * 
+     * @param g2d canvas grafico 2D de la ventana
+     */
     private void gameFinished(Graphics2D g2d) {
 
         var font = new Font("Verdana", Font.BOLD, 18);
@@ -140,6 +170,7 @@ public class Board extends JPanel {
 
         g2d.setColor(Color.WHITE);
         g2d.setFont(font);
+        String message = "Game Over";
         g2d.drawString(message,
                 (Commons.WIDTH - fontMetrics.stringWidth(message)) / 2,
                 Commons.WIDTH / 2);
