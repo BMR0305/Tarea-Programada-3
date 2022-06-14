@@ -1,12 +1,10 @@
 package org.BreakOut;
-import javafx.scene.media.*;
 import javax.swing.JFrame;
 import java.awt.EventQueue;
-import java.io.IOException;
+
 
 
 public class Breakout extends JFrame {
-
 	public Breakout() {
 		initUI();
 	}
@@ -23,7 +21,7 @@ public class Breakout extends JFrame {
 		pack();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args){
 		EventQueue.invokeLater(() -> {
 			var game = new Breakout();
 			game.setVisible(true);
