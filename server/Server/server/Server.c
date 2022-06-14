@@ -9,14 +9,18 @@
 #include <stdio.h>
 #include <string.h>
 #include "logica.h"
-#include "lista_enlazada.h"
 #include "constantes.h"
 
 // Need to link with Ws2_32.lib
 #pragma comment (lib, "Ws2_32.lib")
 // #pragma comment (lib, "Mswsock.lib")
 
-
+/**
+ * Metodo para la creacion y apertura de los sockets del servidor
+ * Se encarga de recibir los mensajes y al clasificarlo seleccionará
+ * el procedimiento a realizar.
+ * @return
+ */
 
 int __cdecl main(void) {
 
@@ -119,7 +123,11 @@ int __cdecl main(void) {
                     char add [1];
                     strcpy(add,"%");
 
-                    while(cabeza != NULL){ //Mientras cabeza no sea NULL
+                    /**
+                     * Se extraerá la infromacion de la lista para
+                     * almacenara en un string para su envio por los sockets
+                     */
+                    while(cabeza != NULL){
 
                         sprintf(value, "%d", cabeza->valor);
                         strcat(game, value);
@@ -144,7 +152,6 @@ int __cdecl main(void) {
                 }
                 else{
                     write(recvbuf);
-                    //iSendResult = send(ClientSocket, recvbuf, 1000, 0);
                 }
 
 
@@ -159,10 +166,6 @@ int __cdecl main(void) {
                 printf("Connection closing...\n");
             else {
                 iResult=0;
-                //printf("recv failed with error: %d\n", WSAGetLastError());
-                //closesocket(ClientSocket);
-                //WSACleanup();
-                //return 1;
             }
 
         } while (iResult > 0);

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/Server.c
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/Server.c
 windows.h
 -
 winsock2.h
@@ -20,19 +20,15 @@ stdio.h
 string.h
 -
 logica.h
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/logica.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/logica.h
 lista_enlazada.h
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
-constantes.h
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/constantes.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
 
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/constantes.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
 
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
-
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/logica.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/logica.h
 lista_enlazada.h
-C:/Users/Lenovo/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
+C:/Users/Usuario/Documents/GitHub/Tarea-Programada-3/server/Server/server/lista_enlazada.h
 stdio.h
 -
 stdlib.h

@@ -452,7 +452,7 @@ public class Board extends JPanel {
         g2d.drawString("Level: " + level_.toString(),125, 20);
         gameInfo = gameInfo+"%" +lifes.toString()+"&"+score.toString()+"&"+level_.toString()+"%";
         try {
-            RandomAccessFile stream = new RandomAccessFile("C:\\Users\\Lenovo\\Documents\\GitHub\\Tarea-Programada-3\\server\\Server\\cmake-build-debug\\gameInfo.txt", "rw");
+            RandomAccessFile stream = new RandomAccessFile("C:\\Users\\Usuario\\Documents\\GitHub\\Tarea-Programada-3\\server\\Server\\cmake-build-debug\\gameInfo.txt", "rw");
             FileChannel channel = stream.getChannel();
             byte[] strBytes = gameInfo.getBytes();
             ByteBuffer buffer = ByteBuffer.allocate(strBytes.length);
@@ -515,6 +515,7 @@ public class Board extends JPanel {
      */
     public java.lang.String getGameInfo() throws IOException {
         File file = new File("C:\\Users\\Lenovo\\Documents\\GitHub\\Tarea-Programada-3\\server\\Server\\cmake-build-debug\\gameInfo.txt");
+        //File file = new File("C:\\Users\\Usuario\\Documents\\GitHub\\Tarea-Programada-3\\server\\Server\\cmake-build-debug\\gameInfo.txt");
         Scanner sc = new Scanner(file);
         String st;
         st = sc.nextLine();
