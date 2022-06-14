@@ -4,7 +4,7 @@ import javax.swing.ImageIcon;
 import java.lang.Object;
 
 /**
- * Clase Ball
+ * Clase Ball implementa herencia
  */
 public class Ball extends Sprite {
     /**
@@ -74,7 +74,7 @@ public class Ball extends Sprite {
     }
 
     /**
-     * Funcion que posicion la bola a su posicion inicial cambiando el valor de sus coordenadas
+     * Funcion que posiciona la bola a su posicion inicial cambiando el valor de sus coordenadas
      */
     void resetState() {
 
@@ -102,6 +102,7 @@ public class Ball extends Sprite {
 
     /**
      * Funcion que retorna la direccion en el eje y
+     * @return ydir
      */
     java.lang.Double getYDir() {
 
@@ -118,6 +119,7 @@ public class Ball extends Sprite {
 
     /**
      * Funcion que retorna la velocidad de la bola
+     * @return velocity
      */
     java.lang.Double getVelocity() {
         return velocity;

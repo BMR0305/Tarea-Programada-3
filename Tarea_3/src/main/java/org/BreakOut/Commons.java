@@ -1,6 +1,8 @@
 package org.BreakOut;
-import java.lang.Object;
 
+/**
+ * Constantes utilizadas para las condiciones iniciales del juego
+ */
 public interface Commons {
 
 	java.lang.Integer WIDTH = 300;

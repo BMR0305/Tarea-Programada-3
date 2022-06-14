@@ -160,7 +160,7 @@ public class Board extends JPanel {
     }
 
     /**
-     * 
+     * Funcion que dibuja en ventana la pantalla de game over
      * @param g2d canvas grafico 2D de la ventana
      */
     private void gameFinished(Graphics2D g2d) {
@@ -178,6 +178,10 @@ public class Board extends JPanel {
                 60, 200);
     }
 
+    /**
+     *  Funcion que dibuja en ventana la pantalla de inicio
+     *  @param g2d canvas grafico 2D de la ventana
+     */
     private void startingScreen(Graphics2D g2d) {
 
         var font = new Font("Verdana", Font.BOLD, 18);
@@ -192,8 +196,16 @@ public class Board extends JPanel {
                 10, 200);
     }
 
+    /**
+     * Clase TAdapter
+     * Encargada de identificar las acciones realizadas por el usuario en l aventana
+     */
     private class TAdapter extends KeyAdapter {
 
+        /**
+         * Funcion que identifica cuando un tecla es soltada
+         * @param e evento en el teclado
+         */
         @Override
         public void keyReleased(KeyEvent e) {
             if (inGame && player) {
@@ -201,6 +213,10 @@ public class Board extends JPanel {
             }
         }
 
+        /**
+         * Funcion que identifica cuando un tecla es presionada
+         * @param e evento en el teclado
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             if (inGame && player){
@@ -220,6 +236,9 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Clase GameCycle implementa Listener
+     */
     private class GameCycle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -227,6 +246,9 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Funcion que realiza el ciclo de juego, en esta se mueven los objetos, se revisan colisiones y se actualiza la pantalla
+     */
     private void doGameCycle() {
         if (player){
             if(inGame){
@@ -241,12 +263,20 @@ public class Board extends JPanel {
         repaint();
     }
 
+    /**
+     * Funcion que detiene el juego y su respectivo timer
+     */
     private void stopGame() {
 
         notfinished = false;
         timer.stop();
     }
 
+    /**
+     * Funcion que deteca las colisiones de las bolas con los demas objetos de la ventana
+     * y que dependiendo de las colisiones realiza distintas acciones como destruir bloques,
+     * activar poderes, rebotar la bola en la raqueta y las paredes.
+     */
     private void checkCollision() {
         for (java.lang.Integer  i = 0; i < listOfBalls.size(); i++){
             Ball ball = listOfBalls.get(i);
@@ -385,6 +415,12 @@ public class Board extends JPanel {
             }
         }
     }
+
+    /**
+     * Funcion que dibuja en pantalla las cosas para el jugador dependiendo del esado
+     * actual del juego ademas guarda el estado acutal del juego para que el espectador pueda utilizar esta informacion
+     * @param g2d canvas grafico 2D de la ventana
+     */
     private void drawPlayer(Graphics2D g2d) {
         java.lang.String gameInfo = "";
         for (Ball ball : listOfBalls) {
@@ -397,7 +433,6 @@ public class Board extends JPanel {
         g2d.drawImage(paddle.getImage(), paddle.getX(), paddle.getY(),
                 paddle.getImageWidth(), paddle.getImageHeight(), this);
         gameInfo= gameInfo + "%"+paddle.getX().toString()+"&"+paddle.getY().toString()+"&"+paddle.getSize()+"%";
-        System.out.println(gameInfo);
         for (java.lang.Integer  i = 0; i < Commons.N_OF_BRICKS; i++) {
             if (!bricks[i].isDestroyed()) {
                 g2d.drawImage(bricks[i].getImage(), bricks[i].getX(),
@@ -430,8 +465,13 @@ public class Board extends JPanel {
             er.printStackTrace();
         }
     }
+    /**
+     * Funcion que dibuja en pantalla las cosas para el espectador dependiendo del estado
+     * del juego del jugador apartir de la informacion guardada
+     * @param g2d canvas grafico 2D de la ventana
+     */
     private void drawSpectator(Graphics2D g2d) throws IOException {
-        java.lang.String gameInfo = getGameInfo("2");
+        java.lang.String gameInfo = getGameInfo();
         java.lang.String [] gameInfoArray = gameInfo.split("%");
         java.lang.String balls_ = gameInfoArray[0];
         java.lang.String paddle_ = gameInfoArray[1];
@@ -470,8 +510,10 @@ public class Board extends JPanel {
         g2d.drawString("Level: " + misc_Info[2],125, 20);
         g2d.drawString("Spectator",10, 390);
     }
-
-    public java.lang.String getGameInfo(java.lang.String message) throws IOException {
+    /**
+     * Funcion que lee la informacion del juego actual para que el especatador la interprete en pantalla
+     */
+    public java.lang.String getGameInfo() throws IOException {
         File file = new File("C:\\Users\\Lenovo\\Documents\\GitHub\\Tarea-Programada-3\\server\\Server\\cmake-build-debug\\gameInfo.txt");
         Scanner sc = new Scanner(file);
         String st;
